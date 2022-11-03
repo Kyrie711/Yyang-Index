@@ -27,7 +27,12 @@ const backgroundCommand: CommandType = {
     const { setBackground } = useTerminalConfigStore()
     if (!url) {
       // 随机获取壁纸
-      await axios.get('base')
+      if (process.env.NODE_ENV === 'development') {
+        await axios.get('base')
+      } else {
+        await axios.get('https://api.mtyqx.cn/tapi/random.php')
+      }
+      
       // console.log(res)
       // setBackground('https://api.mtyqx.cn/tapi/random.php')
     }

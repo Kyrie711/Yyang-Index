@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const myAxios = axios.create({
-  
+
 });
 
 myAxios.defaults.withCredentials = true;
