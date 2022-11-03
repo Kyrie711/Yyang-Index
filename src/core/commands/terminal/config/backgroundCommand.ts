@@ -27,14 +27,14 @@ const backgroundCommand: CommandType = {
     const { setBackground } = useTerminalConfigStore()
     if (!url) {
       // 随机获取壁纸
-      if (process.env.NODE_ENV === 'development') {
-        await axios.get('base')
-      } else {
-        await axios.get('https://api.mtyqx.cn/tapi/random.php')
-      }
-      
+      // if (process.env.NODE_ENV === 'development') {
+      //   await axios.get('base')
+      // } else {
+      //   await axios.get('https://api.mtyqx.cn/tapi/random.php')
+      // }
+      // await axios.get('base')
       // console.log(res)
-      // setBackground('https://api.mtyqx.cn/tapi/random.php')
+      setBackground('https://api.mtyqx.cn/tapi/random.php')
     }
     setBackground(url)
   },

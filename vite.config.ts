@@ -25,6 +25,7 @@ export default defineConfig({
       '/base': {
         target: 'https://api.mtyqx.cn/tapi/random.php',
         changeOrigin: true,
+        secure: true,
         rewrite(path) {
           return path.replace(/^\/base/, '')
         },
