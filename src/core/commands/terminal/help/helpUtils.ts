@@ -73,7 +73,7 @@ export const getOptionKey = (option: CommandOptionType) => {
  * 获取选项关键词列表
  * @param option
  */
-export const getOptionList = (option: CommandOptionType) => {
+export const getOptionKeyList = (option: CommandOptionType) => {
   const list = []
   // 优先用简写
   if (option.alias && option.alias.length > 0) {

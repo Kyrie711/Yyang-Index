@@ -270,7 +270,13 @@ onMounted(() => {
       terminal.writeTextOutput(welcomeText);
     });
   } else {
-    terminal.writeTextOutput(`Welcome to YyangIndex!`);
+    terminal.writeTextOutput(
+      `Welcome to YyangIndex! ` + 
+        `<a href="//github.com/Kyrie711/Yyang-Index" target='_blank' >GitHub Open Source</a>`
+    );
+    terminal.writeTextOutput(
+      `please input 'help' to enjoy!`
+    )
     terminal.writeTextOutput(`<br/>`);
   }
 });
