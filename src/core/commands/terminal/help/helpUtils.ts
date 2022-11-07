@@ -1,17 +1,27 @@
 import { CommandOptionType, CommandType } from '@/core/command'
 
 /**
+ * 用于提示
+ */
+
+/**
  * @description: 拼接用法字符串
  * @param {CommandType} command
- * @return {*}
+ * @param {CommandType} parentCommand
  */
 export const getUsageStr = (
-  command: CommandType
+  command: CommandType,
+  parentCommand?: CommandType
 ) => {
   if (!command) {
     return ""
   }
   let str = "";
+
+  if (parentCommand) {
+    str = parentCommand.func + " ";
+  }
+
   str += command.func
   if (command.params && command.params.length > 0) {
     const paramsStrList: string[] = command.params.map(param => {

@@ -7,7 +7,7 @@ import { CommandType } from '../command'
 const gotoCommand: CommandType = {
   func: "goto",
   name: "网页跳转",
-  alias: ["to", "open", "visit", "jump"],
+  alias: ["open", "visit", "jump"],
   params: [
     {
       key: "link",

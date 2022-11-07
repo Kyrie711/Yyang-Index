@@ -40,12 +40,12 @@ interface CommandType {
   // 选项配置
   options: CommandOptionType[];
   // 子命令
-  // subCommands?: Record<string, CommandType>
+  subCommands?: Record<string, CommandType>
   // 执行功能
   action: (
     options: ParsedOptions,
     terminal: TerminalType,
-    // parentCommand?: CommandType
+    parentCommand?: CommandType
   ) => void;
   // 结果是否允许折叠
   collapsible?: boolean;

@@ -23,7 +23,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/base': {
-        target: 'https://api.mtyqx.cn/tapi/random.php',
+        target: 'http://api.fanyi.baidu.com/api/trans/vip/translate',
         changeOrigin: true,
         secure: true,
         rewrite(path) {

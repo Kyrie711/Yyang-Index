@@ -4,17 +4,18 @@
   import { computed, toRefs } from 'vue'
 
   interface HelpBoxProps {
-    command: CommandType
+    command: CommandType;
+    parentCommand: CommandType
   }
 
   const props = defineProps<HelpBoxProps>()
-  const { command } = toRefs(props)
+  const { command, parentCommand } = toRefs(props)
 
   /**
    * 拼接用法字符串
    */
   const usageStr = computed(() => {
-    return getUsageStr(command.value)
+    return getUsageStr(command.value, parentCommand.value)
   })
 
 </script>
@@ -27,6 +28,21 @@
       别名：{{command.alias.join(", ")}}
     </div>
     <div>用法：{{usageStr}}</div>
+    <template
+      v-if="command.subCommands && Object.keys(command.subCommands).length > 0"
+    >
+      <div>子命令：</div>
+      <ul style="margin-bottom: 0">
+        <li
+          v-for="(subCommand, key, index) in command.subCommands"
+          :key="index"
+        >
+          {{ subCommand.func }}
+          {{ subCommand.name }}
+          {{ subCommand.desc }}
+        </li>
+      </ul>
+    </template>
     <template v-if="command.params && command.params.length > 0">
       <div>参数： </div>
       <ul style="margin-bottom: 0;">
