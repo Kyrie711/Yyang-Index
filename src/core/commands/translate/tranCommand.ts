@@ -47,7 +47,7 @@ const tranCommand: CommandType = {
       const q = keywords
       const sign = md5(appid+q+salt+key)
       axios({
-        url: '/base/',
+        url: '/backend/',
         method: 'get',
         params: {
           q,
