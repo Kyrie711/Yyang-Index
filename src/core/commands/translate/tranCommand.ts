@@ -59,9 +59,11 @@ const tranCommand: CommandType = {
         }
       }).then(res => resolve(res))
     })
-    if (res?.error_code) {
+    if (res?.data.error_code) {
+      console.log(res)
       terminal.writeTextErrorResult(res?.message ?? "翻译失败");
     } else {
+      console.log(res)
       terminal.writeTextSuccessResult(
         `翻译结果：${res.data.trans_result[0].dst}`
       );
