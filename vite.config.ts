@@ -20,16 +20,16 @@ export default defineConfig({
       "@": resolve(__dirname, "src"),
     },
   },
-  server: {
-    proxy: {
-      '/base': {
-        target: 'http://api.fanyi.baidu.com/api/trans/vip/translate',
-        changeOrigin: true,
-        secure: true,
-        rewrite(path) {
-          return path.replace(/^\/base/, '')
-        },
-      }
-    }
-  }
+  // server: {
+  //   proxy: {
+  //     '/base': {
+  //       target: 'http://api.fanyi.baidu.com/api/trans/vip/translate',
+  //       changeOrigin: true,
+  //       secure: true,
+  //       rewrite(path) {
+  //         return path.replace(/^\/base/, '')
+  //       },
+  //     }
+  //   }
+  // }
 });
