@@ -152,6 +152,13 @@
   "resolved" "https://registry.npmjs.org/@types/semver/-/semver-7.3.13.tgz"
   "version" "7.3.13"
 
+"@types/sha256@^0.2.0":
+  "integrity" "sha512-QYMr6HuxTQunFWRLZpGopbkgQFoFWOmKTBGgNSYiWMqU/CWnQSTo3edyHvgsRXsOWtOSOG/cmDptPzgCeOsQGw=="
+  "resolved" "https://registry.npmjs.org/@types/sha256/-/sha256-0.2.0.tgz"
+  "version" "0.2.0"
+  dependencies:
+    "@types/node" "*"
+
 "@typescript-eslint/eslint-plugin@^5.23.0":
   "integrity" "sha512-DXUS22Y57/LAFSg3x7Vi6RNAuLpTXwxB9S2nIA7msBb/Zt8p7XqMwdpdc1IU7CkOQUPgAqR5fWvxuKCbneKGmA=="
   "resolved" "https://registry.npmjs.org/@typescript-eslint/eslint-plugin/-/eslint-plugin-5.41.0.tgz"
@@ -670,6 +677,16 @@
   "integrity" "sha512-9vAdYbHj6x2fLKC4+oPH0kFzY/orMZyG2Aj+kNylHxKGJ/Ed4dpNyAQYwJOdqO4zdM7XpVHmyejQDcQHrnuXbw=="
   "resolved" "https://registry.npmjs.org/consola/-/consola-2.15.3.tgz"
   "version" "2.15.3"
+
+"convert-hex@~0.1.0":
+  "integrity" "sha512-w20BOb1PiR/sEJdS6wNrUjF5CSfscZFUp7R9NSlXH8h2wynzXVEPFPJECAnkNylZ+cvf3p7TyRUHggDmrwXT9A=="
+  "resolved" "https://registry.npmjs.org/convert-hex/-/convert-hex-0.1.0.tgz"
+  "version" "0.1.0"
+
+"convert-string@~0.1.0":
+  "integrity" "sha512-1KX9ESmtl8xpT2LN2tFnKSbV4NiarbVi8DVb39ZriijvtTklyrT+4dT1wsGMHKD3CJUjXgvJzstm9qL9ICojGA=="
+  "resolved" "https://registry.npmjs.org/convert-string/-/convert-string-0.1.0.tgz"
+  "version" "0.1.0"
 
 "core-js@^3.15.1":
   "integrity" "sha512-+DkDrhoR4Y0PxDz6rurahuB+I45OsEUv8E1maPTB6OuHRohMMcznBq9TMpdpDMm/hUPob/mJJS3PqgbHpMTQgw=="
@@ -2176,6 +2193,14 @@
   "integrity" "sha512-sauaDf/PZdVgrLTNYHRtpXa1iRiKcaebiKQ1BJdpQlWH2lCvexQdX55snPFyK7QzpudqbCI0qXFfOasHdyNDGQ=="
   "resolved" "https://registry.npmjs.org/semver/-/semver-5.7.1.tgz"
   "version" "5.7.1"
+
+"sha256@^0.2.0":
+  "integrity" "sha512-kTWMJUaez5iiT9CcMv8jSq6kMhw3ST0uRdcIWl3D77s6AsLXNXRp3heeqqfu5+Dyfu4hwpQnMzhqHh8iNQxw0w=="
+  "resolved" "https://registry.npmjs.org/sha256/-/sha256-0.2.0.tgz"
+  "version" "0.2.0"
+  dependencies:
+    "convert-hex" "~0.1.0"
+    "convert-string" "~0.1.0"
 
 "shallow-equal@^1.0.0":
   "integrity" "sha512-S4vJDjHHMBaiZuT9NPb616CSmLf618jawtv3sufLl6ivK8WocjAo58cXwbRV1cgqxH0Qbv+iUt6m05eqEa2IRA=="

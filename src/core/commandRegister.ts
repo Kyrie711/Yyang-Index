@@ -11,7 +11,12 @@ import clearCommand from './commands/terminal/clearCommand'
 import historyCommand from './commands/terminal/historyCommand'
 import shortcutCommand from './commands/terminal/shortcut/shortcutCommand'
 import todoCommand from './commands/todo/todoCommand'
-import tranCommand from './commands/translate/tranCommand'
+import tranCommand from './commands/tranCommand'
+import baiduCommand from './commands/search/baiduCommand'
+import googleCommand from './commands/search/googleCommand'
+import bilibiliCommand from './commands/search/bilibiliCommand'
+import githubCommand from './commands/search/githubCommand'
+import zhihuCommand from './commands/search/zhihuCommand'
 
 /**
  * 命令列表（数组元素顺序会影响 help 命令的展示顺序）
@@ -30,7 +35,12 @@ const commandList: CommandType[] = [
   historyCommand,
   shortcutCommand,
   todoCommand,
-  tranCommand
+  tranCommand,
+  baiduCommand,
+  googleCommand,
+  bilibiliCommand,
+  githubCommand,
+  zhihuCommand
 ];
 
 /**

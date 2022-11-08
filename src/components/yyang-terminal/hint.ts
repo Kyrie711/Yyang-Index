@@ -51,7 +51,7 @@ const useHint = () => {
    */
   const debounceSetHint = _.debounce((inputText: string) => {
     setHint(inputText);
-  }, 200);
+  }, 0);
 
   return {
     hint,
