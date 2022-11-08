@@ -1,6 +1,6 @@
-import { CommandType } from '@/core/command'
-import { useTodoStore } from '@/store/todo'
-import TaskType = Todo.TaskType
+import { CommandType } from "@/core/command";
+import { useTodoStore } from "@/store/todo";
+import TaskType = Todo.TaskType;
 
 const addCommand: CommandType = {
   func: "add",
@@ -9,28 +9,28 @@ const addCommand: CommandType = {
     {
       key: "name",
       desc: "任务名称",
-      alias: ['n'],
+      alias: ["n"],
       type: "string",
-      required: true
-    }
+      required: true,
+    },
   ],
   action(options, terminal) {
-    const { name } = options
+    const { name } = options;
     if (!name) {
-      terminal.writeTextErrorResult("请输入任务名称")
+      terminal.writeTextErrorResult("请输入任务名称");
       return;
     }
-    const { addTask } = useTodoStore()
+    const { addTask } = useTodoStore();
     const newTask = {
-      name
-    } as TaskType
-    const res = addTask(newTask)
+      name,
+    } as TaskType;
+    const res = addTask(newTask);
     if (res) {
-      terminal.writeTextSuccessResult('添加任务成功')
+      terminal.writeTextSuccessResult("添加任务成功");
     } else {
-      terminal.writeTextErrorResult('操作失败')
+      terminal.writeTextErrorResult("操作失败");
     }
   },
-}
+};
 
-export default addCommand
+export default addCommand;

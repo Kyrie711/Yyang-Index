@@ -1,5 +1,5 @@
-import { defineStore } from 'pinia'
-import TaskType = Todo.TaskType
+import { defineStore } from "pinia";
+import TaskType = Todo.TaskType;
 
 export const useTodoStore = defineStore("todo", {
   state: () => ({
@@ -7,20 +7,20 @@ export const useTodoStore = defineStore("todo", {
       {
         name: "写下你要做的事",
         isFinished: false,
-        createTime:  new Date()
+        createTime: new Date(),
       },
       {
         name: "已完成的事项",
         isFinished: true,
-        createTime: new Date()
-      }
-    ] as TaskType[]
+        createTime: new Date(),
+      },
+    ] as TaskType[],
   }),
   getters: {},
   // 持久化
   persist: {
     key: "todo-store",
-    storage: window.localStorage
+    storage: window.localStorage,
   },
   actions: {
     /**
@@ -29,12 +29,12 @@ export const useTodoStore = defineStore("todo", {
      */
     addTask(task: TaskType) {
       if (!task || !task.name) {
-        return false
+        return false;
       }
-      task.isFinished = false
-      task.createTime = new Date()
-      this.taskList.push(task)
-      return true
+      task.isFinished = false;
+      task.createTime = new Date();
+      this.taskList.push(task);
+      return true;
     },
     /**
      * 删除任务
@@ -42,10 +42,10 @@ export const useTodoStore = defineStore("todo", {
      */
     deleteTask(index: number) {
       if (index < 0 || index >= this.taskList.length) {
-        return false
+        return false;
       }
-      this.taskList.splice(index, 1)
-      return true
+      this.taskList.splice(index, 1);
+      return true;
     },
-  }
-})
+  },
+});

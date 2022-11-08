@@ -1,6 +1,6 @@
-import CommandInputType = YyangTerminal.CommandInputType
-import CommandOutputType = YyangTerminal.CommandOutputType
-import { ref, Ref } from 'vue'
+import CommandInputType = YyangTerminal.CommandInputType;
+import CommandOutputType = YyangTerminal.CommandOutputType;
+import { ref, Ref } from "vue";
 
 /**
  * 查看历史功能
@@ -14,35 +14,35 @@ const useHistory = (
   /**
    * 查看当前的命令位置
    */
-  const commandHistoryPos = ref(commandList.length)
+  const commandHistoryPos = ref(commandList.length);
 
   const listCommandHistory = () => {
-    return commandList
-  }
+    return commandList;
+  };
 
   const showNextCommand = () => {
     if (commandHistoryPos.value < commandList.length - 1) {
-      commandHistoryPos.value++
-      inputCommand.value.text = commandList[commandHistoryPos.value].text
+      commandHistoryPos.value++;
+      inputCommand.value.text = commandList[commandHistoryPos.value].text;
     } else if (commandHistoryPos.value === commandList.length - 1) {
-      commandHistoryPos.value++
-      inputCommand.value.text = ""
+      commandHistoryPos.value++;
+      inputCommand.value.text = "";
     }
-  }
+  };
 
   const showPrevCommand = () => {
     if (commandHistoryPos.value >= 1) {
-      commandHistoryPos.value--
-      inputCommand.value.text = commandList[commandHistoryPos.value].text
+      commandHistoryPos.value--;
+      inputCommand.value.text = commandList[commandHistoryPos.value].text;
     }
-  }
+  };
 
   return {
     commandHistoryPos,
     listCommandHistory,
     showNextCommand,
-    showPrevCommand
-  }
-}
+    showPrevCommand,
+  };
+};
 
-export default useHistory
+export default useHistory;

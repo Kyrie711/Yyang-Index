@@ -5,10 +5,10 @@ import TerminalType = YyangTerminal.TerminalType;
  * 命令参数类型
  */
 interface CommandParamsType {
-  key: string // 参数名
-  desc?: string // 描述
-  defaultValue?: string | boolean
-  required?: boolean
+  key: string; // 参数名
+  desc?: string; // 描述
+  defaultValue?: string | boolean;
+  required?: boolean;
 }
 
 /**
@@ -36,11 +36,11 @@ interface CommandType {
   // 功能别名
   alias?: string[];
   //参数配置
-  params?: CommandParamsType[]
+  params?: CommandParamsType[];
   // 选项配置
   options: CommandOptionType[];
   // 子命令
-  subCommands?: Record<string, CommandType>
+  subCommands?: Record<string, CommandType>;
   // 执行功能
   action: (
     options: ParsedOptions,

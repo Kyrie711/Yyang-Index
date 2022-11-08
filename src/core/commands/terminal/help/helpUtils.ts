@@ -1,4 +1,4 @@
-import { CommandOptionType, CommandType } from '@/core/command'
+import { CommandOptionType, CommandType } from "@/core/command";
 
 /**
  * 用于提示
@@ -14,7 +14,7 @@ export const getUsageStr = (
   parentCommand?: CommandType
 ) => {
   if (!command) {
-    return ""
+    return "";
   }
   let str = "";
 
@@ -22,50 +22,50 @@ export const getUsageStr = (
     str = parentCommand.func + " ";
   }
 
-  str += command.func
+  str += command.func;
   if (command.params && command.params.length > 0) {
-    const paramsStrList: string[] = command.params.map(param => {
-      let word = param.key
+    const paramsStrList: string[] = command.params.map((param) => {
+      let word = param.key;
       if (param.desc) {
-        word = param.desc
+        word = param.desc;
       }
       if (param.required) {
-        return `<${word}>`
+        return `<${word}>`;
       } else {
-        return `[${word}]`
+        return `[${word}]`;
       }
-    })
-    str += " " + paramsStrList.join(" ")
+    });
+    str += " " + paramsStrList.join(" ");
   }
   if (command.options?.length > 0) {
-    const optionStrList: string[] = command.options.map(option => {
-      const optionKey = getOptionKey(option)
-      if (option.type === 'boolean') {
-        let word = optionKey
+    const optionStrList: string[] = command.options.map((option) => {
+      const optionKey = getOptionKey(option);
+      if (option.type === "boolean") {
+        let word = optionKey;
         if (option.desc) {
-          word += ` ${option.desc}`
+          word += ` ${option.desc}`;
         }
         if (option.required) {
-          return `<${word}>`
+          return `<${word}>`;
         } else {
-          return `[${word}]`
+          return `[${word}]`;
         }
       } else {
-        let word = option.key
+        let word = option.key;
         if (option.desc) {
-          word = option.desc
+          word = option.desc;
         }
         if (option.required) {
-          return `<${optionKey} ${word}>`
+          return `<${optionKey} ${word}>`;
         } else {
-          return `[${optionKey} ${word}]`
+          return `[${optionKey} ${word}]`;
         }
       }
-    })
-    str += " " + optionStrList.join(" ")
+    });
+    str += " " + optionStrList.join(" ");
   }
-  return str
-}
+  return str;
+};
 
 /**
  * 获取选项关键词
@@ -74,21 +74,21 @@ export const getUsageStr = (
 export const getOptionKey = (option: CommandOptionType) => {
   // 优先用简写
   if (option.alias && option.alias.length > 0) {
-    return "-" + option.alias[0]
+    return "-" + option.alias[0];
   }
-  return "--" + option.key
-}
+  return "--" + option.key;
+};
 
 /**
  * 获取选项关键词列表
  * @param option
  */
 export const getOptionKeyList = (option: CommandOptionType) => {
-  const list = []
+  const list = [];
   // 优先用简写
   if (option.alias && option.alias.length > 0) {
-    list.push("-" + option.alias[0])
+    list.push("-" + option.alias[0]);
   }
-  list.push("--" + option.key)
-  return list
-}
+  list.push("--" + option.key);
+  return list;
+};

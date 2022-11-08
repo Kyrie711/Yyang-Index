@@ -2,7 +2,7 @@
  * @Author: kkkkyrie
  * @Description: 跳转命令
  */
-import { CommandType } from '../command'
+import { CommandType } from "../command";
 
 const gotoCommand: CommandType = {
   func: "goto",
@@ -12,34 +12,34 @@ const gotoCommand: CommandType = {
     {
       key: "link",
       desc: "目标链接",
-      required: true
-    }
+      required: true,
+    },
   ],
   options: [
     {
       key: "self",
       desc: "是否当前页面打开",
-      alias: ['s'],
+      alias: ["s"],
       type: "boolean",
-      defaultValue: false
-    }
+      defaultValue: false,
+    },
   ],
   action(options, terminal) {
-    const { _, self } = options
+    const { _, self } = options;
     if (_.length < 1) {
-      terminal.writeTextErrorResult('参数不足')
+      terminal.writeTextErrorResult("参数不足");
       return;
     }
-    let link = _[0]
-    if (!link.startsWith('http://') && !link.startsWith('https://')) {
-      link = "http://" + link
+    let link = _[0];
+    if (!link.startsWith("http://") && !link.startsWith("https://")) {
+      link = "http://" + link;
     }
     if (self) {
-      window.location.href = link
+      window.location.href = link;
     } else {
-      window.open(link)
+      window.open(link);
     }
   },
-}
+};
 
-export default gotoCommand
+export default gotoCommand;

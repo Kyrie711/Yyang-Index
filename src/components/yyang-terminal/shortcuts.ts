@@ -2,19 +2,19 @@
  * @Author: kkkkyrie
  * @Description: 快捷键系统
  */
-import TerminalType = YyangTerminal.TerminalType
+import TerminalType = YyangTerminal.TerminalType;
 
 /**
  * 快捷键类型
  */
 interface ShortcutType {
-  code: string // 按键码
-  desc?: string // 功能描述
-  keyDesc?: string //按键描述
-  ctrlKey?: boolean
-  metaKey?: boolean
-  shiftKet?: boolean
-  action: (e: Event, terminal: TerminalType) => void
+  code: string; // 按键码
+  desc?: string; // 功能描述
+  keyDesc?: string; //按键描述
+  ctrlKey?: boolean;
+  metaKey?: boolean;
+  shiftKet?: boolean;
+  action: (e: Event, terminal: TerminalType) => void;
 }
 
 /**
@@ -27,8 +27,8 @@ export const shortcutList: ShortcutType[] = [
     keyDesc: "Ctrl + L",
     ctrlKey: true,
     action(e, terminal) {
-      e.preventDefault()
-      terminal.clear()
+      e.preventDefault();
+      terminal.clear();
     },
   },
   {
@@ -37,8 +37,8 @@ export const shortcutList: ShortcutType[] = [
     keyDesc: "Ctrl + O",
     ctrlKey: true,
     action(e, terminal) {
-      e.preventDefault()
-      terminal.toggleAllCollapse()
+      e.preventDefault();
+      terminal.toggleAllCollapse();
     },
   },
   {
@@ -47,30 +47,30 @@ export const shortcutList: ShortcutType[] = [
     keyDesc: "Ctrl + V",
     metaKey: true,
     action(e, terminal) {
-      terminal.focusInput()
+      terminal.focusInput();
     },
   },
   {
     code: "Tab",
     action(e, terminal) {
-      e.preventDefault()
+      e.preventDefault();
       if (terminal.isInputFocused()) {
-        terminal.setTabCompletion()
+        terminal.setTabCompletion();
       } else {
-        terminal.focusInput()
+        terminal.focusInput();
       }
     },
   },
   {
     code: "Backspace",
     action(e, terminal) {
-      terminal.focusInput()
+      terminal.focusInput();
     },
   },
   {
     code: "Enter",
     action(e, terminal) {
-      terminal.focusInput()
+      terminal.focusInput();
     },
   },
   {
@@ -78,8 +78,8 @@ export const shortcutList: ShortcutType[] = [
     code: "ArrowUp",
     keyDesc: "👆",
     action(e, terminal) {
-      e.preventDefault()
-      terminal.showPrevCommand()
+      e.preventDefault();
+      terminal.showPrevCommand();
     },
   },
   {
@@ -87,26 +87,26 @@ export const shortcutList: ShortcutType[] = [
     code: "ArrowDown",
     keyDesc: "👇",
     action(e, terminal) {
-      e.preventDefault()
-      terminal.showNextCommand()
+      e.preventDefault();
+      terminal.showNextCommand();
     },
-  }
-]
+  },
+];
 
 /**
  * 注册快捷键
  * @param terminal
  */
 export const registerShortcuts = (terminal: TerminalType) => {
-  document.onkeydown = e => {
-    let key = e.key
+  document.onkeydown = (e) => {
+    let key = e.key;
     // 自动聚焦输入框
-    if (key >= 'a' && key <= 'z' && !e.metaKey && !e.shiftKey && !e.ctrlKey) {
-      terminal.focusInput()
+    if (key >= "a" && key <= "z" && !e.metaKey && !e.shiftKey && !e.ctrlKey) {
+      terminal.focusInput();
       return;
     }
     // 匹配快捷键
-    let code = e.code
+    let code = e.code;
     for (const shortcut of shortcutList) {
       if (
         code === shortcut.code &&
@@ -114,8 +114,8 @@ export const registerShortcuts = (terminal: TerminalType) => {
         e.metaKey == !!shortcut.metaKey &&
         e.shiftKey == !!shortcut.shiftKet
       ) {
-        shortcut.action(e, terminal)
+        shortcut.action(e, terminal);
       }
     }
-  }
-}
+  };
+};

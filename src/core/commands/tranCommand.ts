@@ -1,63 +1,62 @@
-import { CommandType } from '@/core/command'
-import axios from 'axios'
-import sha from 'sha256'
-
+import { CommandType } from "@/core/command";
+import axios from "axios";
+import sha from "sha256";
 
 /**
  * 翻译
  */
 
 const tranCommand: CommandType = {
-  func: 'translate',
-  name: '翻译',
+  func: "translate",
+  name: "翻译",
   params: [
     {
-      key: 'word',
-      desc: '要翻译的内容',
-      required: true
-    }
+      key: "word",
+      desc: "要翻译的内容",
+      required: true,
+    },
   ],
   options: [
     {
-      key: 'from',
-      desc: '源语言',
-      alias: ['f'],
-      type: 'string',
-      defaultValue: 'auto'
+      key: "from",
+      desc: "源语言",
+      alias: ["f"],
+      type: "string",
+      defaultValue: "auto",
     },
     {
-      key: 'to',
-      desc: '目标语言',
-      alias: ['t'],
-      type: 'string',
-      defaultValue: 'auto'
-    }
+      key: "to",
+      desc: "目标语言",
+      alias: ["t"],
+      type: "string",
+      defaultValue: "auto",
+    },
   ],
   async action(options, terminal) {
-    const { _, from, to } = options
+    const { _, from, to } = options;
     if (_.length < 1) {
-      terminal.writeTextErrorResult('参数不足')
+      terminal.writeTextErrorResult("参数不足");
       return;
     }
-    const keywords = _.join(' ')
+    const keywords = _.join(" ");
     const res: any = await new Promise((resolve, reject) => {
-      const appKey = '69fa3c29556841d1'
-      const key = 'MVDw5qkvjbU1fgsygS9zzikr0yzAa1nl'
-      const signType = 'v3'
-      const salt = (new Date()).getTime();
-      const curtime = Math.round(new Date().getTime()/1000);
-      const q = keywords
-      let input = ''
-      let len = q.length
+      const appKey = "69fa3c29556841d1";
+      const key = "MVDw5qkvjbU1fgsygS9zzikr0yzAa1nl";
+      const signType = "v3";
+      const salt = new Date().getTime();
+      const curtime = Math.round(new Date().getTime() / 1000);
+      const q = keywords;
+      let input = "";
+      let len = q.length;
       if (len > 20) {
-        input += q.substring(0, 10) + len + q.substring(len-10, len)
+        input += q.substring(0, 10) + len + q.substring(len - 10, len);
       } else {
-        input = q
+        input = q;
       }
-      const sign = sha(appKey+input+salt+curtime+key)
+      const sign = sha(appKey + input + salt + curtime + key);
       axios({
-        url: '/backend/',
-        method: 'get',
+        url: "/backend/",
+        method: "get",
         params: {
           q,
           from,
@@ -66,16 +65,14 @@ const tranCommand: CommandType = {
           salt,
           sign,
           signType,
-          curtime
-        }
-      }).then(res => resolve(res))
-    })
-    if (res?.data.errorCode == '0') {
-      terminal.writeTextSuccessResult(
-        `翻译结果：${res.data.translation[0]}`
-      )
+          curtime,
+        },
+      }).then((res) => resolve(res));
+    });
+    if (res?.data.errorCode == "0") {
+      terminal.writeTextSuccessResult(`翻译结果：${res.data.translation[0]}`);
     } else {
-      terminal.writeTextErrorResult('翻译失败')
+      terminal.writeTextErrorResult("翻译失败");
     }
 
     // const res: any = await new Promise((resolve, reject) => {
@@ -105,7 +102,7 @@ const tranCommand: CommandType = {
     //     `翻译结果：${res.data.trans_result[0].dst}`
     //   );
     // }
-  }
-}
+  },
+};
 
-export default tranCommand
+export default tranCommand;

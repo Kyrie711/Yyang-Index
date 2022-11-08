@@ -6,7 +6,7 @@ import { ref } from "vue";
 import { commandMap } from "@/core/commandRegister";
 import _, { trim } from "lodash";
 import { useTerminalConfigStore } from "@/store/terminalConfig";
-import { getUsageStr } from '@/core/commands/terminal/help/helpUtils'
+import { getUsageStr } from "@/core/commands/terminal/help/helpUtils";
 
 const useHint = () => {
   const hint = ref("");
@@ -25,7 +25,7 @@ const useHint = () => {
     // 大小写无关
     let func = args[0].toLowerCase();
     // 前缀匹配
-    const likeKey = Object.keys(commandMap).filter((key) => 
+    const likeKey = Object.keys(commandMap).filter((key) =>
       key.startsWith(func)
     )[0];
     let command = commandMap[likeKey];
@@ -39,11 +39,10 @@ const useHint = () => {
       Object.keys(command.subCommands).length > 0 &&
       args.length > 1
     ) {
-      hint.value = getUsageStr(command.subCommands[args[1]], command)
+      hint.value = getUsageStr(command.subCommands[args[1]], command);
     } else {
-      hint.value = getUsageStr(command)
+      hint.value = getUsageStr(command);
     }
-    
   };
 
   /**

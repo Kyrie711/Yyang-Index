@@ -9,10 +9,7 @@ import helpCommand from "./commands/terminal/help/helpCommand";
  * @param text
  *
  */
-const getCommand = (
-  text: string,
-  parentCommand?: CommandType
-): CommandType => {
+const getCommand = (text: string, parentCommand?: CommandType): CommandType => {
   let func = text.split(" ", 1)[0];
   // 大小写无关
   func = func.toLowerCase();
@@ -23,10 +20,10 @@ const getCommand = (
     parentCommand.subCommands &&
     Object.keys(parentCommand.subCommands).length > 0
   ) {
-    commands = parentCommand.subCommands
+    commands = parentCommand.subCommands;
   }
   const command = commands[func];
-  console.log('commands',commands)
+  console.log("commands", commands);
   return command;
 };
 
@@ -75,17 +72,17 @@ const doAction = async (
   terminal: TerminalType,
   parentCommand?: CommandType
 ) => {
-  const { help } = options
+  const { help } = options;
   // 设置输出折叠
   if (command.collapsible || help) {
-    terminal.setCommandCollapsible(true)
+    terminal.setCommandCollapsible(true);
   }
   // 查看帮助
   // e.g. xxx --help => { _: ["xxx"] }
   // 转成参数的形式
   if (help) {
-    const newOptions = { ...options, _:[command.func]}
-    helpCommand.action(newOptions, terminal, parentCommand)
+    const newOptions = { ...options, _: [command.func] };
+    helpCommand.action(newOptions, terminal, parentCommand);
     return;
   }
   await command.action(options, terminal);
@@ -112,13 +109,13 @@ export const doCommandExecute = async (
   const { _ } = parsedOptions;
   // 有子命令，执行
   if (
-    _.length > 0 && 
+    _.length > 0 &&
     command.subCommands &&
     Object.keys(command.subCommands).length > 0
   ) {
     // 把子命令当做新命令解析，todo add xxx => add xxx
-    const subText = text.substring(text.indexOf(" ") + 1)
-    await doCommandExecute(subText, terminal, command)
+    const subText = text.substring(text.indexOf(" ") + 1);
+    await doCommandExecute(subText, terminal, command);
     return;
   }
 

@@ -7,9 +7,9 @@ import CommandInputType = YyangTerminal.CommandInputType;
 import TerminalType = YyangTerminal.TerminalType;
 import OutputStatusType = YyangTerminal.OutputStatusType;
 import TextOutputType = YyangTerminal.TextOutputType;
-import useHint from './hint'
-import useHistory from './history'
-import { registerShortcuts } from './shortcuts'
+import useHint from "./hint";
+import useHistory from "./history";
+import { registerShortcuts } from "./shortcuts";
 
 const user = ref("[local]$");
 /**
@@ -67,14 +67,14 @@ const inputcommand = ref<CommandInputType>({
  */
 let currentNewCommand: CommandOutputType;
 
-const { 
-  commandHistoryPos, 
+const {
+  commandHistoryPos,
   showNextCommand,
   showPrevCommand,
-  listCommandHistory
-} = useHistory(commandList.value, inputcommand)
+  listCommandHistory,
+} = useHistory(commandList.value, inputcommand);
 
-const { hint, setHint, debounceSetHint } = useHint()
+const { hint, setHint, debounceSetHint } = useHint();
 
 /**
  * 提交命令（回车）
@@ -82,15 +82,15 @@ const { hint, setHint, debounceSetHint } = useHint()
 const doSubmitCommand = async () => {
   isRunning.value = true;
   // 清除提示
-  setHint("")
+  setHint("");
   let inputText = inputcommand.value.text;
   console.log("inputText", inputText);
   // 执行某条历史记录
   if (inputText.startsWith("!")) {
-    const commandIndex = Number(inputText.substring(1))
-    const command = commandList.value[commandIndex - 1]
+    const commandIndex = Number(inputText.substring(1));
+    const command = commandList.value[commandIndex - 1];
     if (command) {
-      inputText = command.text
+      inputText = command.text;
     }
   }
 
@@ -111,7 +111,7 @@ const doSubmitCommand = async () => {
   if (inputText) {
     commandList.value.push(newCommand);
     // 重置当前要查看的命令位置
-    commandHistoryPos.value = commandList.value.length
+    commandHistoryPos.value = commandList.value.length;
   }
   inputcommand.value = { ...initcommand };
   // 默认展开折叠面板
@@ -125,8 +125,8 @@ const doSubmitCommand = async () => {
 
 // 输入框内容改变时，触发输入提示
 watchEffect(() => {
-  debounceSetHint(inputcommand.value.text)
-})
+  debounceSetHint(inputcommand.value.text);
+});
 
 /**
  * 清空所有输出
@@ -217,15 +217,15 @@ const isInputFocused = () => {
   );
 };
 /**
- *  设置输入框的值 
+ *  设置输入框的值
  */
 const setTabCompletion = () => {
   if (hint.value) {
     inputcommand.value.text = `${hint.value.split(" ")[0]}${
       hint.value.split(" ").length > 1 ? " " : ""
-    }`
+    }`;
   }
-}
+};
 /**
  * 折叠 / 展开所有块
  */
@@ -263,7 +263,7 @@ const terminal: TerminalType = {
 };
 
 onMounted(() => {
-  registerShortcuts(terminal)
+  registerShortcuts(terminal);
   const { welcomeTexts } = configStore;
   if (welcomeTexts?.length > 0) {
     welcomeTexts.forEach((welcomeText) => {
@@ -271,12 +271,10 @@ onMounted(() => {
     });
   } else {
     terminal.writeTextOutput(
-      `Welcome to YyangIndex! ` + 
+      `Welcome to YyangIndex! ` +
         `<a href="//github.com/Kyrie711/Yyang-Index" target='_blank' >GitHub Open Source</a>`
     );
-    terminal.writeTextOutput(
-      `please input 'help' to enjoy!`
-    )
+    terminal.writeTextOutput(`please input 'help' to enjoy!`);
     terminal.writeTextOutput(`<br/>`);
   }
 });
@@ -285,7 +283,6 @@ onMounted(() => {
  * 当点击空白聚焦输入框
  */
 const handleClickWrapper = (e: Event): void => {
-  
   // console.log(e.target)
   //@ts-ignore
   // console.log(e.currentTarget?.style)
@@ -301,7 +298,11 @@ defineExpose({
 </script>
 
 <template>
-  <div class="yyang-terminal-wrapper" :style="wrapperStyle" @click="handleClickWrapper">
+  <div
+    class="yyang-terminal-wrapper"
+    :style="wrapperStyle"
+    @click="handleClickWrapper"
+  >
     <div ref="terminalRef" class="yyang-terminal">
       <a-collapse
         v-model:active-key="activeKeys"
@@ -372,10 +373,10 @@ defineExpose({
           </template>
         </a-input>
         <!-- 输入提示 -->
-        <div v-if="hint && !isRunning" class="terminal-row" style="color: #bbb;">
-          hint: {{hint}}
+        <div v-if="hint && !isRunning" class="terminal-row" style="color: #bbb">
+          hint: {{ hint }}
         </div>
-          
+
         <div style="margin-bottom: 16px" />
       </div>
     </div>

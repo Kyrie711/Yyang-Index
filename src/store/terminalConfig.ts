@@ -18,12 +18,6 @@ export const useTerminalConfigStore = defineStore("terminalConfig", {
   persist: {
     key: "terminal-config-store",
     storage: window.localStorage,
-    beforeRestore: (context) => {
-      console.log("load terminalConfigStore data start");
-    },
-    afterRestore: (context) => {
-      console.log("load terminalConfigStore data end");
-    },
   },
   actions: {
     setBackground(url: string) {
